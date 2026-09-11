@@ -2,7 +2,7 @@ import './CreateTodoButton.css'
 
 function CreateTodoButton() {
     return (
-        <button>
+        <button className="createTodoButton">
             +
         </button>
     )
