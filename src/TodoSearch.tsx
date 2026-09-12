@@ -1,9 +1,9 @@
 import './TodoSearch.css';
-import react from 'react';
+import type { TodoSearchProps } from './TodoSearch.types';
 
-function TodoSearch() {
 
-  const [searchValue, setSearchValue] = react.useState('');
+
+function TodoSearch({ searchValue, setSearchValue }: TodoSearchProps) {
 
   return (
     <input 
