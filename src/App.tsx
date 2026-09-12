@@ -6,7 +6,13 @@ import { CreateTodoButton }  from './CreateTodoButton'
 import { TodoItem } from './TodoItem'
 import react from 'react';
 
-const defaultTodos = [
+
+interface Todo {
+  text: string;
+  completed: boolean;
+}
+
+const defaultTodos : Todo[] = [
     { text: 'Cortar cebolla', completed: true },
     { text: 'Tomar el curso de intro a React', completed: false },
     { text: 'Llorar con la llorona', completed: false },
@@ -23,6 +29,20 @@ function App() {
    }) 
   
 
+   const completeTodos = (todo : Todo )  => {
+    const copyTodos = [...todos];
+    const item = copyTodos.findIndex(t => t.text === todo.text);
+    copyTodos[item].completed = true;
+    setTodos(copyTodos);
+   }
+
+   const deleteTodos = (todo : Todo )  => {
+    const copyTodos = [...todos];
+    const item = copyTodos.findIndex(t => t.text === todo.text);
+    copyTodos.splice(item, 1);
+    setTodos(copyTodos);
+   }
+
   return (
     <>
       <TodoCounter total={totalTodos}  completed={completedTodos}/>
@@ -33,6 +53,8 @@ function App() {
             <TodoItem key={todo.text}
                       text={todo.text}
                       completed={todo.completed}
+                      onComplete={() => completeTodos(todo)}
+                      onDelete={() => deleteTodos(todo)}
             />
           ))
 
