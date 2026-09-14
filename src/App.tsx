@@ -18,8 +18,21 @@ const defaultTodos : Todo[] = [
     { text: 'Llorar con la llorona', completed: false },
   ]
 
+ localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos)); 
+
 function App() {
-   const [todos, setTodos] = react.useState(defaultTodos);
+
+  const localStorageTodos = localStorage.getItem('TODOS_V1');
+  let parsedTodos: Todo[] = [];
+
+  if (!localStorageTodos) {
+    localStorage.setItem('TODOS_V1', JSON.stringify([]));
+    parsedTodos = [];
+  } else {
+    parsedTodos = JSON.parse(localStorageTodos);
+  }
+
+   const [todos, setTodos] = react.useState(parsedTodos);
    const totalTodos = todos.length;
    const completedTodos = todos.filter(todo => todo.completed).length; 
     const [searchValue, setSearchValue] = react.useState('');
