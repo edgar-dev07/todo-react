@@ -1,5 +1,5 @@
 
-import { TodoIcon } from "./TodoIcon"
+import { TodoIcon } from "../TodoIcon/TodoIcon"
 import type { CompleteIconProps } from "./CompleteIcon.types"
 
 
